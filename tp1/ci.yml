@@ -1,0 +1,12 @@
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with: node-version: '18'
+      - run: npm ci
+      - run: npx playwright install --with-deps
+      - name: Run Playwright tests
+        run: npx playwright test --reporter=list
